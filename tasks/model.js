@@ -6,14 +6,18 @@ const createTask = (task) => {
 }
 
 const getAllTasks = () => {
-    return db('tasks')
-    .then(tasks => {
-        const newTasks = tasks.map(task => {
+    return Promise.all([db('tasks'), db('projects')])
+    .then(res => {
+        const newTasks = res[0].map(task => {
+            const taskProjects = res[1].filter(item => item.id === task.project_id)
+
             return {
                 id: task.id,
                 description: task.description,
                 notes: task.notes,
                 completed: task.completed ? true : false,
+                projectName: taskProjects[0].name,
+                projectDescription: taskProjects[0].description,
             }
         })
 
