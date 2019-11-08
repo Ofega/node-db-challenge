@@ -40,11 +40,21 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+  A Relational Database is the database software itself, which manages and stores the database, while, SQL, the Structured Query Language, is a language which is typically used to query the Relational DB
+
 - [ ] Why do tables need a `primary key`?
+ 
+  Primary Keys make each record in the table unique.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+  Foreign Key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+  Both resources(tables) can have multiple instances of each other.
+
+
 
 ## Minimum Viable Product
 
