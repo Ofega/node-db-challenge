@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
         })
 })
 
+
 router.get('/:id', (req, res) => {
     db.getAProject(req.params.id)
         .then(project => {

@@ -13,7 +13,7 @@ const getAllTasks = () => {
                 id: task.id,
                 description: task.description,
                 notes: task.notes,
-                completed: task.completed ? true : false
+                completed: task.completed ? true : false,
             }
         })
 
