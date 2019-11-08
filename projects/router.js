@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+    db.getAProject(req.params.id)
+        .then(project => {
+            res.json(project);
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Failed to get projects' });
+        })
+})
+
 router.post('/', (req, res) => {
     db.createProject({ 
         name: req.body.name, 

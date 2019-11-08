@@ -16,7 +16,18 @@ const getAllProjects = () => {
     })
 }
 
+const getAProject = (id) => {
+    return db('projects').where({ id: id })
+        .then(projects => {
+            projects.map(project => {
+                project.completed = project.completed ? true : false;
+            })
+            return projects
+        })
+}
+
 module.exports = {
     createProject,
-    getAllProjects
+    getAllProjects,
+    getAProject
 }
