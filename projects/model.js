@@ -17,22 +17,16 @@ const getAllProjects = () => {
 }
 
 const getAProject = (id) => {
-    return db('projects').where({ id: id })
-        .then(projects => {
-            return db('tasks').where({ project_id: id})
-                .then((tasks) => {
-                    return db('resources')
-                        .then((resources) => {
-                            return {
-                                id: projects[0].id,
-                                name: projects[0].name,
-                                description: projects[0].description,
-                                completed: projects[0].completed ? true : false,
-                                tasks: tasks, 
-                                resources: resources
-                            }
-                        })
-                })
+    return Promise.all([db('projects').where({ id: id }), db('tasks').where({ project_id: id}), db('resources')])
+        .then(([projects, tasks, resources]) => {
+            return {
+                id: projects[0].id,
+                name: projects[0].name,
+                description: projects[0].description,
+                completed: projects[0].completed ? true : false,
+                tasks: tasks, 
+                resources: resources
+            }
         })
 }
 
