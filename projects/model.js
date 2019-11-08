@@ -9,7 +9,7 @@ const getAllProjects = () => {
     return db('projects')
     .then(projects => {
         projects.map(project => {
-            project.completed = project.completed === 1 ? true : false;
+            project.completed = project.completed ? true : false;
         })
 
         return projects

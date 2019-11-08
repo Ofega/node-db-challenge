@@ -14,15 +14,17 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    const { name } = req.body;
-
-    db.createProject({ name })
-        .then(id => {
-            res.json(`A new project with an id of ${id} was created`);
-        })
-        .catch(err => {
-            res.status(500).json({ message: 'Failed to create project' });
-        })
+    db.createProject({ 
+        name: req.body.name, 
+        description: req.body.description, 
+        completed: req.body.completed || 0 
+    })
+    .then(id => {
+        res.json(`A new project with an id of ${id} was created`);
+    })
+    .catch(err => {
+        res.status(500).json({ message: 'Failed to create project' });
+    })
 })
 
 module.exports = router;
